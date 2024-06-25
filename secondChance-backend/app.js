@@ -8,6 +8,7 @@ const connectToDatabase = require('./models/db');
 const {loadData} = require("./util/import-mongo/index");
 
 
+
 const app = express();
 app.use("*",cors());
 const port = 3060;
@@ -25,7 +26,8 @@ app.use(express.json());
 
 // authRoutes Step 2: import the authRoutes and store in a constant called authRoutes
 //{{insert code here}}
-
+const secondChanceItemsRoutes = require('./routes/secondChanceItemsRoutes');
+app.use('/api/secondchance/items', secondChanceItemsRoutes);
 // Items API Task 1: import the secondChanceItemsRoutes and store in a constant called secondChanceItemsRoutes
 //{{insert code here}}
 
@@ -62,3 +64,4 @@ app.get("/",(req,res)=>{
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
