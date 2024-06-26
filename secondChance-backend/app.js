@@ -39,7 +39,7 @@ const pinoHttp = require('pino-http');
 const logger = require('./logger');
 
 app.use(pinoHttp({ logger }));
-
+app.use(express.static(path.join(__dirname, 'public')));
 // Use Routes
 // authRoutes Step 2: add the authRoutes and to the server by using the app.use() method.
 //{{insert code here}}
@@ -65,4 +65,6 @@ app.get("/",(req,res)=>{
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
+
 
