@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connectToDatabase = require('../models/db');
-
+require('dotenv').config();
 // Search for gifts
 router.get('/', async (req, res, next) => {
     try {
@@ -17,25 +17,19 @@ router.get('/', async (req, res, next) => {
         // Add the name filter to the query if the name parameter is not empty
         if (req.query.name && req.query.name.trim() !== '') {
             query.name = { $regex: req.query.name, $options: "i" }; // Using regex for partial match, case-insensitive
-        // }
+           }
 
         // Task 3: Add other filters to the query
         if (req.query.category) {
             // {{insert code here}}
             query.category = req.query.category;
-            query.condition = req.query.condition;
-            query.age_years = { $lte: parseInt(req.query.age_years) };
         }
         if (req.query.condition) {
             // {{insert code here}} 
-            query.category = req.query.category;
             query.condition = req.query.condition;
-            query.age_years = { $lte: parseInt(req.query.age_years) };
         }
         if (req.query.age_years) {
             // {{insert code here}}
-            query.category = req.query.category;
-            query.condition = req.query.condition;
             query.age_years = { $lte: parseInt(req.query.age_years) };
         }
 
